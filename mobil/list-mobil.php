@@ -61,7 +61,7 @@ if (!isset($_SESSION["karyawan"])) {
                         <div class="row">
                             <div class="col-lg-4">
                                 <!-- untuk gambar -->
-                                <img src="image/<?=$mobil["image"]?>" width="50%">
+                                <img src="image/<?=$mobil["image"]?>" width="100%">
                             </div>
 
                             <div class="col-lg-6 mt-2">
@@ -71,7 +71,7 @@ if (!isset($_SESSION["karyawan"])) {
                                 <h6>Nomor : <?=$mobil["nomor_mobil"]?></h6>
                                 <h6>Merk : <?=$mobil["merk"]?></h6>
                                 <h6>Jenis : <?=$mobil["jenis"]?></h6>
-                                <h6>Warna : <?=$mobil["jumlah_halaman"]?></h6>
+                                <h6>Warna : <?=$mobil["warna"]?></h6>
                                 <h6>Tahun Pembuatan : <?=$mobil["tahun_pembuatan"]?></h6>
                                 <h6>Biaya Sewa Rp : <?=$mobil["biaya_sewa"]?></h6>
                             </div>

@@ -1,91 +1,118 @@
-<?php
-session_start();
-# jika saat load halaman ini, pastikan telah login sebagai petugas
-if (!isset($_SESSION["petugas"])) {
-    header("Location:../login/login.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Peminjaman Buku</title>
+    <title>Daftar Penyewaan</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <?php include("../home.php") ?>
     <div class="container">
         <div class="card">
             <div class="card-header bg-dark">
-                <h4 class="text-white">
-                    Form Peminjaman Buku
-                </h4>
+                <h4 class="text-white text-center">Daftar Penyewaan</h4>
             </div>
 
             <div class="card-body">
-                <form action="process-pinjam.php" method="post">
-                <!-- input kode pinjam -->
-                Kode Peminjaman
-                <input type="text" name="kode_pinjam"
-                class="form-control mb-2" required>
-                <!-- Tgl pinjam dibuat otomatis -->
-                <?php
-                date_default_timezone_set('Asia/Jakarta');
-                ?>
-                Tanggal Pinjam
-                <input type="text" name="tgl_pinjam"
-                class="form-control mb-2"
-                value="<?=(date("Y-m-d H:i:s"))?>">
-                <!-- pilih anggota dengan nama -->
-                Nama
-                <select name="id_anggota" class="form-control">
-                <?php
-                include("../connection.php");
-                $sql = "select * from anggota";
-                $hasil = mysqli_query($connect, $sql);
-                while($anggota = mysqli_fetch_array($hasil)){
-                    ?>
-                    <option value="<?=($anggota["id_anggota"])?>">
-                        <?=($anggota["nama_anggota"])?>
-                    </option>
+                <ul class="list-group">
                     <?php
-                }
-                ?>
-                </select>
-                
-                
-                <!-- petugas ambil dari data login -->
-                <input type="hidden" name="id_petugas"
-                value="<?=($_SESSION["petugas"]["id_petugas"])?>">
+                        include("../connection.php");
+                        $sql ="select sewa.*, pelanggan.*, karyawan.*, penyewaan.id_pengembalian, penyewaan.tgl_pengembalian, penyewaan.denda
+                        from sewa inner join pelanggan
+                        on pelanggan.id_pelanggan=sewa.id_pelanggan
+                        inner join karyawan
+                        on sewa.id_karyawan=karyawan.id_karyawan
+                        left outer join penyewaan
+                        on sewa.id_sewa=penyewaan.id_sewa";
 
-                Petugas
-                <input type="text" name="nama_petugas"
-                class="form-control mb-2" readonly
-                value="<?=($_SESSION["petugas"]["nama_petugas"])?>">
-
-                <!-- tampilan pilihan buku yang akan dipinjam -->
-                Pilih Buku yang Akan dipinjam
-                <select name="isbn[]" class="form-control mb-2" required multiple="multiple">
-                    <?php
-                    $sql = "select * from buku";
-                    $hasil = mysqli_query($connect, $sql);
-                    while ($buku = mysqli_fetch_array($hasil)) {
-                        ?>
-                        <option value="<?=($buku["isbn"])?>">
-                            <?=($buku["judul_buku"])?>
-                        </option>
-                        <?php
-                    }
+                        $hasil = mysqli_query($connect, $sql);
+                        while ($sewa = mysqli_fetch_array($hasil)) {
                     ?>
-                </select>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6">
+                                    <small class="text-info">id sewa</small>
+                                    <h5><?=($sewa["id_sewa"])?></h5>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <small class="text-info">Peminjam</small>
+                                    <h5><?=($sewa["nama_pelanggan"])?></h5>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <small class="text-info">karyawan</small>
+                                    <h5><?=($sewa["nama_karyawan"])?></h5>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <small class="text-info">Tanggal sewa</small>
+                                    <h5><?=($sewa["tgl_sewa"])?></h5>  
+                                </div>
+                            </div>
 
-                <button type="submit" class="btn btn-block btn-dark">
-                    Pinjam
-                </button>
-                </form>
+                            <div class="row">
+                                <div class="col-lg-9 col-md-10">
+                                    <small class="text-info">List penyewaan</small>
+                                        <ul>
+                                        <?php
+                                        $id_sewa = $sewa["id_sewa"];
+                                        $sql = "select * from detail_sewa 
+                                        inner join mobil
+                                        on detail_sewa.id_mobil = mobil.id_mobil
+                                        where id_sewa = '$id_sewa'";
+
+                                        //eksekusi
+                                        $hasil_mobil = mysqli_query($connect, $sql);
+                            
+                                        //dijadikan array
+                                        while ($mobil = mysqli_fetch_array($hasil_mobil)) {
+                                        ?>
+                                        <li>
+                                            <h6>
+                                                <?=($mobil["merk_mobil"])?>
+                                                <i class="text-secondary">
+                                                    <small>(Dibuat tahun <?=($mobil["tahun_pembuatan"])?>)</small>
+                                                </i>
+                                            </h6>
+                                        </li>
+                                        <?php
+                                        }
+                                        ?>
+                                        </ul>
+                                </div>
+
+                                <div class="col-lg-3 col-md-2">
+                                    <small class="text-info">Status <br>
+                                    <?php if ($sewa["id_pengembalian"] ==  null){?>
+                                        <div class="badge badge-warning">
+                                            Masih Disewa
+                                        </div>
+                                        <a href="proses-kembali.php?id_sewa=<?=($sewa["id_sewa"])?>" 
+                                        onclick="return confirm('Apakah anda yakin ingin mengembalikan mobil?')">
+                                            <button class="btn btn-sm btn-success mx-2">
+                                                Kembalikan
+                                            </button>
+                                        </a>
+                                    <?php } else {?>
+                                        <div class="badge badge-info">
+                                            Sudah dikembalikan
+                                        </div>
+                                        <div class="badge badge-danger">
+                                            Denda : Rp <?=(number_format($sewa["denda"],2))?>
+                                        </div>
+                                    <?php } ?>
+                                    </small>
+                                </div>
+                            </div>
+
+                            
+                        </li>
+                    <?php
+                        }
+                    ?>
+                </ul>
             </div>
         </div>
     </div>

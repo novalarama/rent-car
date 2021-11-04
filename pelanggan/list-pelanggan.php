@@ -33,14 +33,14 @@ if (!isset($_SESSION["karyawan"])){
                 </form>
 
                 <a href="form-pelanggan.php">
-                    <button class="btn btn-success">
+                    <button class="btn btn-success mb-2">
                         Add Customer
                     </button>
                 </a>
                 
                 <ul class="list-group">
                 <?php
-                inclue("../connection.php");
+                include("../connection.php");
                 if (isset($_GET["search"])) {
                     $search = $_GET["search"];
 

@@ -21,7 +21,7 @@ if (isset($_POST["login"])) {
         # data disimpan ke dalam session
         $karyawan = mysqli_fetch_array($hasil);
         $_SESSION["karyawan"] = $karyawan;
-        echo "<script>alert('Login Berhasil!');window.location='../sewa/list-sewa.php'</script>";
+        echo "<script>alert('Login Berhasil, Selamat Datang!');window.location='../sewa/list-sewa.php'</script>";
         
     }else{
         # login gagal

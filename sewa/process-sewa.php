@@ -5,12 +5,11 @@ $id_sewa = $_POST["id_sewa"];
 $tgl_sewa = $_POST["tgl_sewa"];
 $id_pelanggan = $_POST["id_pelanggan"];
 $id_karyawan = $_POST["id_karyawan"];
-$total_bayar = $_POST["total_bayar"]; 
 $mobil = $_POST["id_mobil"]; //array
 
 # perintah SQL untuk insert ke table sewa
 $sql = "insert into sewa values
-('','$id_karyawan','$id_pelanggan','$tgl_sewa','$total_bayar')";
+('','$id_karyawan','$id_pelanggan','$tgl_sewa')";
 
 if (mysqli_query($connect, $sql)) {
     # jika berhasil insert ke tabel sewa

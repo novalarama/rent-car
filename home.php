@@ -25,7 +25,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-danger navbar-dark sticky-top mb-2">
-        <a href="../sewa/list-sewa.php" class="navbar-brand">PERPUS</a>
+        <a href="../sewa/list-sewa.php" class="navbar-brand">RENTAL</a>
 
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -57,7 +57,7 @@
             </li>
             <li>
                 <a href="../sewa/form-sewa.php">
-                    <button class="btn btn-white btn-block ">sewa</button>
+                    <button class="btn btn-white btn-block ">Sewa</button>
                 </a>
             </li>
         </ul>

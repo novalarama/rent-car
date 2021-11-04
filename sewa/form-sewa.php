@@ -1,9 +1,9 @@
-<?php /*
+<?php 
 session_start();
 # jika saat load halaman ini, pastikan telah login sebagai karyawan
 if (!isset($_SESSION["karyawan"])) {
     header("Location:../login/login.php");
-} */
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,17 +73,12 @@ if (!isset($_SESSION["karyawan"])) {
                     while ($mobil = mysqli_fetch_array($hasil)) {
                         ?>
                         <option value="<?=($mobil["id_mobil"])?>">
-                            <?=($mobil["merk_mobil"])?>
+                            <?=($mobil["merk"].", Harga sewa = ".$mobil["biaya_sewa"])?>
                         </option>
                         <?php
                     }
                     ?>
                 </select>
-
-                <!-- Pilih durasi -->
-                <input type="number" name="durasi"
-                class="form-control mb-2" required>
-
 
                 <button type="submit" class="btn btn-block btn-dark">
                     sewa

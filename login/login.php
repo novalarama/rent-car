@@ -14,7 +14,7 @@
     <div class="container" style=margin-top:50px;>
         <div class="card col-lg-6 mx-auto">
             <div class="card-header bg-info">
-                <h3 class="text-white text-center">Login Petugas Perpustakaan</h3>
+                <h3 class="text-white text-center">Login Petugas Rental Mobil</h3>
             </div>
 
             <div class="card-body">

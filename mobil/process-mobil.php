@@ -1,9 +1,9 @@
 <?php
-include "../connection.php";
+include ("../connection.php");
 if (isset($_POST["simpan_mobil"])) {
     # menampung data yg dikirim ke dalam variable
     $id_mobil = $_POST["id_mobil"];
-    $nomor_mobil = $_POST["nomor_mobil$nomor_mobil"];
+    $nomor_mobil = $_POST["nomor_mobil"];
     $merk = $_POST["merk"];
     $jenis = $_POST["jenis"];
     $warna = $_POST["warna"];
@@ -15,7 +15,7 @@ if (isset($_POST["simpan_mobil"])) {
     $extension = pathinfo($_FILES["image"]["name"]);
     $ext = $extension["extension"]; // eksetensi file
 ;
-    $image = time()."-".$fileName
+    $image = time()."-".$fileName;
     
     # proses upload
     $folderName = "image/$image";
@@ -23,7 +23,7 @@ if (isset($_POST["simpan_mobil"])) {
         # proses insert data ke tabel mobil
         $sql = "insert into mobil values
         ('','$nomor_mobil','$merk','$jenis',
-        '$warna','$tahun_pembuatan','$biaya_sewa''$image')";
+        '$warna','$tahun_pembuatan','$biaya_sewa','$image')";
 
         # eksekusi perintah SQL
         mysqli_query($connect, $sql);

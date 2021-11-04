@@ -1,8 +1,8 @@
 <?php
 session_start();
 # jika saat load halaman ini, pastikan telah login sebagai mobil
-if (!isset($_SESSION["mobil"])) {
-    header("Location:login.php");
+if (!isset($_SESSION["karyawan"])) {
+    header("Location:../login/login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -96,10 +96,6 @@ if (!isset($_SESSION["mobil"])) {
                     enctype="multipart/form-data">
 
                         Nomor mobil 
-                        <input type="text" name="nomor_mobil"
-                        class="form-control mb-2" required>
-
-                        Nomor Mobil
                         <input type="text" name="nomor_mobil"
                         class="form-control mb-2" required>
 

@@ -2,6 +2,7 @@
 include ("../connection.php");
 
 $id_sewa = $_GET["id_sewa"];
+$biaya_sewa = $_GET["biaya-sewa"];
 date_default_timezone_set('Asia/Jakarta');
 $tgl_kembali = date_create(date("Y-m-d H:i:s"));
 $tgl_kembali_fix = date("Y-m-d H:i:s");
@@ -27,10 +28,10 @@ if ($selisih_hari > 7) {
     $denda = 0;
 }
 
-$total_bayar = $selisih_hari
+$total_bayar = $selisih_hari * $biaya_sewa
 
 $sql = "insert into penyewaan values
-('','$id_sewa','$tgl_kembali_fix','$denda')";
+('','$id_sewa','$tgl_kembali_fix','$denda','$biaya_sewa')";
 
 if (mysqli_query($connect, $sql)) {
     header("Location:list-sewa.php");
