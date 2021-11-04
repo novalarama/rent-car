@@ -72,14 +72,20 @@ if (!isset($_SESSION["karyawan"])) {
                     $hasil = mysqli_query($connect, $sql);
                     while ($mobil = mysqli_fetch_array($hasil)) {
                         ?>
+                        
                         <option value="<?=($mobil["id_mobil"])?>">
-                            <?=($mobil["merk"].", Harga sewa = ".$mobil["biaya_sewa"])?>
+                        Paket <?=($mobil["id_mobil"])?>
+                            <?=($mobil["merk"].", Harga sewa = ".$mobil["biaya_sewa"]."/hari")?>
                         </option>
                         <?php
                     }
                     ?>
                 </select>
-
+                
+                Durasi (hari)
+                <input type="number" name="durasi"
+                class="form-control mb-2">
+                
                 <button type="submit" class="btn btn-block btn-dark">
                     sewa
                 </button>

@@ -24,6 +24,11 @@ if (!isset($_SESSION["karyawan"])){
         <div class="card">
             <div class="card-header bg-dark">
                 <h4 class="text-white texxt-center">Data Pelanggan Rental Mobil</h4>
+                <a href="form-pelanggan.php">
+                    <button class="btn btn-success mb-2">
+                        Add Customer
+                    </button>
+                </a>
             </div>
 
             <div class="card-body">
@@ -31,12 +36,6 @@ if (!isset($_SESSION["karyawan"])){
                     <input type="text" name="search" class="form-control mb-2"
                     placeholder="Search">
                 </form>
-
-                <a href="form-pelanggan.php">
-                    <button class="btn btn-success mb-2">
-                        Add Customer
-                    </button>
-                </a>
                 
                 <ul class="list-group">
                 <?php
@@ -60,13 +59,13 @@ if (!isset($_SESSION["karyawan"])){
                             <div class="col-lg-2 col-md-2 align-self-center">
                                 <h5><b><?php echo $pelanggan["id_pelanggan"];?></b></h5>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-8 col-md-8">
                                 <h5><b><?php echo $pelanggan["nama_pelanggan"];?></b></h5>
                                 <h6>Alamat : <?php echo $pelanggan["alamat_pelanggan"];?></h6>
                                 <h6>Kontak : <?php echo $pelanggan["kontak"];?></h6>
                             </div>
 
-                            <div class="col-lg-4 col-md-2">
+                            <div class="col-lg-2 col-md-2">
                                 <a href="form-pelanggan.php?id_pelanggan=<?php echo $pelanggan["id_pelanggan"];?>">
                                     <button class="btn btn-block btn-primary mb-2">
                                         Edit

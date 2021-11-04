@@ -28,10 +28,10 @@ if ($selisih_hari > 7) {
     $denda = 0;
 }
 
-$total_bayar = $selisih_hari * $biaya_sewa
+$total_bayar = ($selisih_hari * $biaya_sewa)+$denda;
 
 $sql = "insert into penyewaan values
-('','$id_sewa','$tgl_kembali_fix','$denda','$biaya_sewa')";
+('','$id_sewa','$tgl_kembali_fix','$denda','$total_biaya')";
 
 if (mysqli_query($connect, $sql)) {
     header("Location:list-sewa.php");

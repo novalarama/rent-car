@@ -59,9 +59,13 @@ if (!isset($_SESSION["karyawan"])) {
                             value="<?=$mobil["merk"];?>">
 
                             Jenis
-                            <input type="text" name="jenis"
-                            class="form-control mb-2" required
-                            value="<?=$mobil["jenis"];?>">
+                            <select name="jenis" class="form-control mb-2" required>
+                                <option value="<?=$mobil["jenis"];?>" selected><?=$mobil["jenis"];?></option>
+                                <option value="Mobil">Mobil</option>
+                                <option value="Bus">Elf</option>
+                                <option value="Mobil Eksekutif">Mobil Eksekutif</option>
+                                <option value="Bus">Bus</option>
+                            </select>
 
                             Warna
                             <input type="text" name="warna"
@@ -104,8 +108,12 @@ if (!isset($_SESSION["karyawan"])) {
                         class="form-control mb-2" required>
 
                         Jenis
-                        <input type="text" name="jenis"
-                        class="form-control mb-2" required>
+                        <select name="jenis" class="form-control mb-2" required>
+                             <option value="Mobil">Mobil</option>
+                             <option value="Bus">Elf</option>
+                             <option value="Mobil Eksekutif">Mobil Eksekutif</option>
+                             <option value="Bus">Bus</option>
+                        </select>
 
                         Warna
                         <input type="text" name="warna"
