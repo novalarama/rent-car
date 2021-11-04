@@ -2,20 +2,20 @@
 include("../connection.php");
 
 if (isset($_POST["simpan_pelanggan"])) {
-    // tampung data input anggota dari user
+    // tampung data input pelanggan dari user
     
     $nama_pelanggan = $_POST["nama_pelanggan"];
     $alamat_pelanggan = $_POST["alamat_pelanggan"];
     $kontak = $_POST["kontak"];
 
-    //membuat perintah sql untuk insert data ke table anggota
+    //membuat perintah sql untuk insert data ke table pelanggan
     $sql = "insert into pelanggan values
     ('','$nama_pelanggan','$alamat_pelanggan','$kontak')";
 
     //eksekusi perintah sql
     $tambah = mysqli_query($connect, $sql);
 
-    //direct ke halaman list-anggota
+    //direct ke halaman list-pelanggan
     if ($tambah) {
         header('Location:list-pelanggan.php');
     } else {
@@ -32,8 +32,8 @@ if (isset($_POST["simpan_pelanggan"])) {
         $alamat_pelanggan = $_POST["alamat_pelanggan"];
         $kontak = $_POST["kontak"];
 
-        $sql = "update pelanggan set nama_anggota='$nama_anggota', alamat_anggota='$alamat_anggota',
-        kontak='$kontak' where id_anggota='$id_anggota'";
+        $sql = "update pelanggan set nama_pelanggan='$nama_pelanggan', alamat_pelanggan='$alamat_pelanggan',
+        kontak='$kontak' where id_pelanggan='$id_pelanggan'";
         
         $edit = mysqli_query($connect, $sql);
         
