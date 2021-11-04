@@ -57,7 +57,7 @@ if (!isset($_SESSION["karyawan"])) {
                         value="<?=$pelanggan["nama_pelanggan"];?>">
 
                         Alamat Pelanggan
-                        <input type="date" name="alamat_pelanggan"
+                        <input type="text" name="alamat_pelanggan"
                         class="form-control mb-2" required
                         value="<?=$pelanggan["alamat_pelanggan"];?>">
 
