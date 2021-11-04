@@ -31,6 +31,9 @@ if (isset($_POST["simpan_pelanggan"])) {
         $nama_pelanggan = $_POST["nama_pelanggan"];
         $alamat_pelanggan = $_POST["alamat_pelanggan"];
         $kontak = $_POST["kontak"];
+
+        $sql = "update pelanggan set nama_anggota='$nama_anggota', alamat_anggota='$alamat_anggota',
+        kontak='$kontak' where id_anggota='$id_anggota'";
         
         $edit = mysqli_query($connect, $sql);
         
