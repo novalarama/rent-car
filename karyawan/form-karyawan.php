@@ -61,7 +61,8 @@
 
                         Password
                         <input type="password" name="password"
-                        class="form-control mb-2">
+                        class="form-control mb-2"
+                        value="<?=$karyawan["password"];?>">
 
                         <button type="submit" class="btn btn-success btn-block"
                         name="edit_karyawan">
