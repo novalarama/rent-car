@@ -77,7 +77,7 @@ if (!isset($_SESSION["karyawan"])) {
                             </div>
 
                             <div class="col-lg-2">
-                                <a href="form-mobil.php?isbn=<?=$mobil["id_mobil"]?>">
+                                <a href="form-mobil.php?id_mobil=<?=$mobil["id_mobil"]?>">
                                     <button class="btn btn-info btn-block mb-2">
                                         Edit
                                     </button>
