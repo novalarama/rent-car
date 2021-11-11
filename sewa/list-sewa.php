@@ -21,7 +21,7 @@
                 <ul class="list-group">
                     <?php
                         include("../connection.php");
-                        $sql ="select sewa.*, pelanggan.*, karyawan.*, penyewaan.id_pengembalian, penyewaan.tgl_pengembalian, penyewaan.denda
+                        $sql ="select sewa.*, pelanggan.*, karyawan.*, penyewaan.id_pengembalian, penyewaan.tgl_kembali, penyewaan.denda, penyewaan.total_bayar
                         from sewa inner join pelanggan
                         on pelanggan.id_pelanggan=sewa.id_pelanggan
                         inner join karyawan
@@ -35,7 +35,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-lg-3 col-md-6">
-                                    <small class="text-info">id sewa</small>
+                                    <small class="text-info">ID Sewa</small>
                                     <h5><?=($sewa["id_sewa"])?></h5>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
@@ -43,11 +43,11 @@
                                     <h5><?=($sewa["nama_pelanggan"])?></h5>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
-                                    <small class="text-info">karyawan</small>
+                                    <small class="text-info">Karyawan</small>
                                     <h5><?=($sewa["nama_karyawan"])?></h5>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
-                                    <small class="text-info">Tanggal sewa</small>
+                                    <small class="text-info">Tanggal Sewa</small>
                                     <h5><?=($sewa["tgl_sewa"])?></h5>  
                                 </div>
                             </div>
@@ -89,10 +89,10 @@
                                         <div class="badge badge-warning">
                                             Masih Disewa
                                         </div>
-                                        <a href="proses-kembali.php?id_sewa=<?=($sewa["id_sewa"])?>" 
+                                        <a href="proces-kembali.php?id_sewa=<?=($sewa["id_sewa"])?>" 
                                         onclick="return confirm('Apakah anda yakin ingin mengembalikan mobil?')">
                                             <button class="btn btn-sm btn-success mx-2">
-                                                Kembalikan
+                                                Bayar : Rp <?=(number_format($sewa["total_bayar"],2))?>
                                             </button>
                                         </a>
                                     <?php } else {?>
@@ -101,6 +101,9 @@
                                         </div>
                                         <div class="badge badge-danger">
                                             Denda : Rp <?=(number_format($sewa["denda"],2))?>
+                                        </div>
+                                        <div class="badge badge-primary">
+                                            Total : Rp <?=(number_format($sewa["total_bayar"],2))?>
                                         </div>
                                     <?php } ?>
                                     </small>
