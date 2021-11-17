@@ -91,7 +91,7 @@ elseif (isset($_POST["update_mobil"])) {
     else {
         $sql = "update mobil set nomor_mobil='$nomor_mobil',
             merk='$merk',jenis='$jenis',warna='$warna',
-            tahun_pembuatan='$tahun_pembuatan',biaya_sewa='$biaya_sewa',
+            tahun_pembuatan='$tahun_pembuatan',biaya_sewa='$biaya_sewa'
             where id_mobil='$id_mobil'";
             
             if (mysqli_query($connect, $sql)) {

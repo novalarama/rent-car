@@ -2,7 +2,6 @@
 include ("../connection.php");
 
 $id_sewa = $_GET["id_sewa"];
-$biaya_sewa = $_GET["biaya-sewa"];
 date_default_timezone_set('Asia/Jakarta');
 $tgl_kembali = date_create(date("Y-m-d H:i:s"));
 $tgl_kembali_fix = date("Y-m-d H:i:s");
@@ -21,17 +20,8 @@ $selisih = date_diff($tgl_kembali, $tgl_sewa);
 # mengkonversi hasil selisih format jumlah hari
 $selisih_hari = $selisih->format("%a");
 
-
-if ($selisih_hari > 7) {
-    $denda = ($selisih_hari -7)*1000;
-}else {
-    $denda = 0;
-}
-
-$total_bayar = ($selisih_hari * $biaya_sewa)+$denda;
-
 $sql = "insert into penyewaan values
-('','$id_sewa','$tgl_kembali_fix','$denda','$total_biaya')";
+('','$id_sewa','$tgl_kembali_fix')";
 
 if (mysqli_query($connect, $sql)) {
     header("Location:list-sewa.php");

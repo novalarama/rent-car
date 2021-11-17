@@ -28,7 +28,12 @@ if (!isset($_SESSION["karyawan"])) {
 
             <div class="card-body">
                 <form action="process-sewa.php" method="post">
-                
+                ID Sewa
+                <input type="text" name="id_sewa"
+                class="form-control mb-2"
+                readonly
+                value="P-<?=(time())?>"
+                required>
                 <!-- Tgl sewa dibuat otomatis -->
                 <?php
                 date_default_timezone_set('Asia/Jakarta');
@@ -38,7 +43,7 @@ if (!isset($_SESSION["karyawan"])) {
                 class="form-control mb-2"
                 value="<?=(date("Y-m-d H:i:s"))?>">
                 <!-- pilih pelanggan dengan nama -->
-                Nama
+                Nama Pelanggan
                 <select name="id_pelanggan" class="form-control">
                 <?php
                 include("../connection.php");
@@ -74,7 +79,7 @@ if (!isset($_SESSION["karyawan"])) {
                         ?>
                         
                         <option value="<?=($mobil["id_mobil"])?>">
-                        Paket <?=($mobil["id_mobil"])?>
+                            Paket <?=($mobil["id_mobil"])?>
                             <?=($mobil["merk"].", Harga sewa = ".$mobil["biaya_sewa"]."/hari")?>
                         </option>
                         <?php

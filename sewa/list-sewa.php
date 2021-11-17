@@ -21,13 +21,14 @@
                 <ul class="list-group">
                     <?php
                         include("../connection.php");
-                        $sql ="select sewa.*, pelanggan.*, karyawan.*, penyewaan.id_pengembalian, penyewaan.tgl_kembali, penyewaan.denda, penyewaan.total_bayar
+                        $sql ="select sewa.*, pelanggan.*, karyawan.*, penyewaan.id_pengembalian, penyewaan.tgl_kembali
                         from sewa inner join pelanggan
                         on pelanggan.id_pelanggan=sewa.id_pelanggan
                         inner join karyawan
                         on sewa.id_karyawan=karyawan.id_karyawan
                         left outer join penyewaan
-                        on sewa.id_sewa=penyewaan.id_sewa";
+                        on sewa.id_sewa=penyewaan.id_sewa
+                        order by sewa.tgl_sewa desc";
 
                         $hasil = mysqli_query($connect, $sql);
                         while ($sewa = mysqli_fetch_array($hasil)) {
@@ -71,9 +72,10 @@
                                         ?>
                                         <li>
                                             <h6>
-                                                <?=($mobil["merk_mobil"])?>
+                                                <?=($mobil["merk"])?>
                                                 <i class="text-secondary">
-                                                    <small>(Dibuat tahun <?=($mobil["tahun_pembuatan"])?>)</small>
+                                                    <br><small>(Dengan biaya sewa Rp<?=($mobil["biaya_sewa"])?>/hari)</small>
+                                                    <br><small>(Durasi sewa <?=($sewa["durasi"])?> hari)</small>
                                                 </i>
                                             </h6>
                                         </li>
@@ -89,6 +91,7 @@
                                         <div class="badge badge-warning">
                                             Masih Disewa
                                         </div>
+                                        <br>
                                         <a href="proces-kembali.php?id_sewa=<?=($sewa["id_sewa"])?>" 
                                         onclick="return confirm('Apakah anda yakin ingin mengembalikan mobil?')">
                                             <button class="btn btn-sm btn-success mx-2">
@@ -98,9 +101,6 @@
                                     <?php } else {?>
                                         <div class="badge badge-info">
                                             Sudah dikembalikan
-                                        </div>
-                                        <div class="badge badge-danger">
-                                            Denda : Rp <?=(number_format($sewa["denda"],2))?>
                                         </div>
                                         <div class="badge badge-primary">
                                             Total : Rp <?=(number_format($sewa["total_bayar"],2))?>

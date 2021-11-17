@@ -2,7 +2,7 @@
 session_start();
 # jika saat load halaman ini, pastikan telah login sebagai karyawan
 if (!isset($_SESSION["karyawan"])) {
-    header("Location:.../login/login.php");
+    header("Location:../login/login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -83,7 +83,7 @@ if (!isset($_SESSION["karyawan"])) {
                                     </button>
                                 </a>
 
-                                <a href="process-mobil.php?isbn=<?=$mobil["id_mobil"]?>"
+                                <a href="process-mobil.php?id_mobil=<?=$mobil["id_mobil"]?>"
                                 onclick="return confirm('Are you sure delete this data?')">
                                     <button class="btn btn-danger btn-block">
                                         Delete
